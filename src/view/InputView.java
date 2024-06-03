@@ -1,16 +1,28 @@
 package view;
 
+import domain.Account;
+
+import java.util.Scanner;
+
 public class InputView {
 
-    private static final InputView instance = new InputView();
+    private Scanner scanner;
+    private final InputValidation inputValidation;
 
-    public static InputView getInstance() {
-        return instance;
+    public InputView(InputValidation inputValidation) {
+        this.inputValidation = inputValidation;
     }
 
-    public void getAccountId() {
+    public Account getAccountId() {
         System.out.println(ConsoleMessage.INPUT_ACCOUNT_ID.message);
+        String input = getInput();
+        inputValidation.checkBlank(input);
+        return new Account(input);
+    }
 
+    private String getInput() {
+        scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
     private enum ConsoleMessage {

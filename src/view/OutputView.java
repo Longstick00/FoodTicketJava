@@ -15,6 +15,7 @@ public class OutputView {
 
     private enum ConsoleMessage {
         WELCOME("""
+            =========================================
             |               법틀의                  |
             |               식권대장                 |
             |               서비스                  |

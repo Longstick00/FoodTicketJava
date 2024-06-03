@@ -1,10 +1,7 @@
 package config;
 
 import service.MainService;
-import view.InputConverter;
-import view.InputManager;
-import view.InputView;
-import view.OutputView;
+import view.*;
 
 public class AppConfig {
 
@@ -13,15 +10,15 @@ public class AppConfig {
     }
 
     private InputManager inputManager() {
-        return new InputManager(inputView(), inputConverter());
+        return new InputManager(inputView());
     }
 
     private InputView inputView() {
-        return InputView.getInstance();
+        return new InputView(inputValidation());
     }
 
-    private InputConverter inputConverter() {
-        return InputConverter.getInstance();
+    private InputValidation inputValidation() {
+        return InputValidation.getInstance();
     }
 
     private OutputView outputView() {

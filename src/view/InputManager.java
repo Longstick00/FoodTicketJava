@@ -1,15 +1,17 @@
 package view;
 
+import domain.Account;
+import util.ExceptionHandler;
+
 public class InputManager {
 
     private final InputView inputView;
-    private final InputConverter inputConverter;
 
-    public InputManager(InputView inputView, InputConverter inputConverter) {
+    public InputManager(InputView inputView) {
         this.inputView = inputView;
-        this.inputConverter = inputConverter;
     }
 
-    public void getAccountId() {
+    public Account getAccountId() {
+        return ExceptionHandler.handle(inputView::getAccountId);
     }
 }

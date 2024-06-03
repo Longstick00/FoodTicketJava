@@ -5,8 +5,8 @@ public class Account {
     private final String name;
     private Long balance;
 
-    public Account(String name, Long balance) {
+    public Account(String name) {
         this.name = name;
-        this.balance = balance;
+        this.balance = 100000L;
     }
 }
