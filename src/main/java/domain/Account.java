@@ -8,14 +8,16 @@ public class Account {
     public Account() {
     }
 
-    public Account(String name) {
-        this.name = name;
-        this.balance = 100000L;
-    }
-
     public Long eat(Integer price) {
+        checkNegative(price);
         balance -= price;
         return this.balance;
+    }
+
+    private void checkNegative(Integer price) {
+        if (this.balance - price < 0) {
+            throw new IllegalStateException("잔액이 부족합니다.");
+        }
     }
 
     public String getName() {

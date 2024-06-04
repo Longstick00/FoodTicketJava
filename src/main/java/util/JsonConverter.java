@@ -3,6 +3,8 @@ package util;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import domain.Account;
+import domain.Restaurant;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +18,6 @@ public class JsonConverter {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         try {
-            // Create a TypeReference for the given class
             TypeReference<List<T>> typeReference = new TypeReference<>() {};
             return objectMapper.readValue(new File(PATH), typeReference);
         } catch (IOException e) {
@@ -24,12 +25,12 @@ public class JsonConverter {
         }
     }
 
-//    public static List<Restaurant> convertToRestaurant() {
-//        return convertToEntity(Restaurant.class);
-//    }
-//
-//    public static List<Account> convertToAccounts() {
-//        return convertToEntity(Account.class);
-//    }
+    public static List<Restaurant> convertToRestaurant() {
+        return convertToEntity(Restaurant.class, "info.json");
+    }
+
+    public static List<Account> convertToAccounts() {
+        return convertToEntity(Account.class, "user.json");
+    }
 
 }

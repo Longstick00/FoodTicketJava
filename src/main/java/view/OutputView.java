@@ -30,14 +30,14 @@ public class OutputView {
     }
 
     public void selectMenuMessage(List<Menu> restaurant) {
-        System.out.println("==========================================");
-        System.out.println("|    메뉴    |   가격   |       시간대     |");
-        System.out.println("==========================================");
+        System.out.println(ConsoleMessage.PROGRESS_BAR.message);
+        System.out.println(ConsoleMessage.MENU_BAR.message);
+        System.out.println(ConsoleMessage.PROGRESS_BAR.message);
         for (Menu menu : restaurant) {
-            String menuInfo = String.format("| %10s | %6d원 | %10s     |", menu.getName(), menu.getPrice(), menu.getTimeSet());
+            String menuInfo = String.format(ConsoleMessage.MENU_PRICE.message, menu.getName(), menu.getPrice(), menu.getTimeSet());
             System.out.println(menuInfo);
         }
-        System.out.println("==========================================");
+        System.out.println(ConsoleMessage.PROGRESS_BAR.message);
     }
 
     public void currentTimeMessage(TimeSet timeSet) {
@@ -59,7 +59,10 @@ public class OutputView {
             =========================================
             """),
         NOW_TIME_MESSAGE("현재 %s시간입니다. %s메뉴를 보여드릴게요."),
-        AMOUNT("%d원이 결제되었습니다.");
+        AMOUNT("%d원이 결제되었습니다."),
+        PROGRESS_BAR("=========================================="),
+        MENU_BAR("|    메뉴    |   가격   |       시간대     |"),
+        MENU_PRICE("\"| %10s | %6d원 | %10s     |\"");
 
         private final String message;
 
