@@ -1,6 +1,8 @@
 package view;
 
 import domain.Account;
+import domain.Restaurant;
+import repository.AccountRepository;
 
 public class InputManager {
 
@@ -15,10 +17,15 @@ public class InputManager {
     public Account getAccountId() {
         String accountId = inputView.getAccountId();
         inputValidation.checkBlank(accountId);
-        return new Account(accountId);
+        return AccountRepository.getById(accountId);
     }
 
-    public String getRestaurantName() {
-        return inputView.getRestaurantName();
+    public Restaurant getSelectedRestaurant() {
+        String restaurantName = inputView.getRestaurantName();
+        return null;
+    }
+
+    public String getSelectedMenu() {
+        return inputView.getMenuName();
     }
 }

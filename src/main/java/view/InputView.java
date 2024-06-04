@@ -21,6 +21,11 @@ public class InputView {
         return getInput();
     }
 
+    public String getMenuName() {
+        System.out.println(ConsoleMessage.CHOOSE_MENU.message);
+        return getInput();
+    }
+
     private String getInput() {
         scanner = new Scanner(System.in);
         return scanner.nextLine();

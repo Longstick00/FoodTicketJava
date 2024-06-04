@@ -7,7 +7,7 @@ import view.*;
 public class AppConfig {
 
     public MainService mainService() {
-        return new MainService(inputManager(), outputView(), jsonConverter());
+        return new MainService(inputManager(), outputView());
     }
 
     private InputManager inputManager() {
@@ -26,7 +26,4 @@ public class AppConfig {
         return OutputView.getInstance();
     }
 
-    private JsonConverter jsonConverter() {
-        return JsonConverter.create();
-    }
 }

@@ -1,43 +1,43 @@
 package service;
 
 import domain.Account;
+import domain.Menu;
 import domain.Restaurant;
-import domain.RestaurantList;
 import domain.TimeSet;
+import repository.RestaurantRepository;
 import util.ExceptionHandler;
 import util.JsonConverter;
 import view.InputManager;
 import view.OutputView;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.List;
 
 public class MainService {
 
     private final InputManager inputManager;
     private final OutputView outputView;
-    private final JsonConverter jsonConverter;
 
     public MainService(InputManager inputManager,
-                       OutputView outputView,
-                       JsonConverter jsonConverter) {
+                       OutputView outputView) {
         this.inputManager = inputManager;
         this.outputView = outputView;
-        this.jsonConverter = jsonConverter;
     }
 
     public void runService() {
-        RestaurantList restaurantList = jsonConverter.convertToObject();
+        List<Restaurant> restaurants = RestaurantRepository.get();
         Account userAccount = ExceptionHandler.handle(inputManager::getAccountId);
-        outputView.selectRestaurantMessage(restaurantList);
+        outputView.selectRestaurantMessage(RestaurantRepository.get());
 
-        String restaurantName = inputManager.getRestaurantName();
-        Restaurant restaurant = restaurantList.restaurants().stream()
-                .filter(o -> o.getName().equals(restaurantName))
-                .findFirst().get();
+        Restaurant restaurant = ExceptionHandler.handle(inputManager::getSelectedRestaurant);
 
-        TimeSet timeSet = TimeSet.getTimeSet();
-        System.out.println(LocalTime.now() + timeSet.name());
+        TimeSet nowTimeSet = TimeSet.getTimeSet();
+        List<Menu> menuListByTimeSet = restaurant.getMenuByTimeOfDay(nowTimeSet);
+        outputView.currentTimeMessage(nowTimeSet);
+        outputView.selectMenuMessage(menuListByTimeSet);
+        String selectedMenu = inputManager.getSelectedMenu();
 
+        Menu menu = restaurant.menuSelect(selectedMenu);
+        Long afterBalance = userAccount.eat(menu.getPrice());
+        outputView.payMessage(menu.getPrice());
     }
 }

@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Restaurant {
 
@@ -23,5 +24,17 @@ public class Restaurant {
 
     public List<Menu> getMenuList() {
         return menuList;
+    }
+
+    public List<Menu> getMenuByTimeOfDay(TimeSet timeSet) {
+        return menuList.stream()
+                .filter(menu -> menu.getTimeSet().equals(timeSet))
+                .collect(Collectors.toList());
+    }
+
+    public Menu menuSelect(String selectedMenu) {
+        return menuList.stream()
+                .filter(menu -> menu.getName().equals(selectedMenu))
+                .findFirst().get();
     }
 }

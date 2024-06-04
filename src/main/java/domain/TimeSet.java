@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public enum TimeSet {
+    //(LocalTime.of(6, 0), LocalTime.of(10, 59)) -> 6시부터 10시 59분까지는 아침
     BREAKFAST(LocalTime.of(6, 0), LocalTime.of(10, 59)),
     LAUNCH(LocalTime.of(11, 0), LocalTime.of(17, 59)),
     DINNER(LocalTime.of(18, 0), LocalTime.of(22, 59));
