@@ -7,23 +7,25 @@ import java.util.Scanner;
 public class InputView {
 
     private Scanner scanner;
-    private final InputValidation inputValidation;
 
-    public InputView(InputValidation inputValidation) {
-        this.inputValidation = inputValidation;
+    public InputView() {
     }
 
-    public Account getAccountId() {
+    public String getAccountId() {
         System.out.println(ConsoleMessage.INPUT_ACCOUNT_ID.message);
-        String input = getInput();
-        inputValidation.checkBlank(input);
-        return new Account(input);
+        return getInput();
+    }
+
+    public String getRestaurantName() {
+        System.out.println(ConsoleMessage.INPUT_ACCOUNT_ID.message);
+        return getInput();
     }
 
     private String getInput() {
         scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
+
 
     private enum ConsoleMessage {
         INPUT_ACCOUNT_ID("유저 ID를 입력해주세요.(ex. Longstick0)"),

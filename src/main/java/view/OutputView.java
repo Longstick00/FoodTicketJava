@@ -1,16 +1,28 @@
 package view;
 
+import domain.Restaurant;
+import domain.RestaurantList;
+
 public class OutputView {
 
     private static final OutputView instance = new OutputView();
 
     public static OutputView getInstance() {
-        instance.printWelcomeMessage();
+        instance.welcomeMessage();
         return instance;
     }
 
-    public void printWelcomeMessage() {
+    public void welcomeMessage() {
         System.out.println(ConsoleMessage.WELCOME.message);
+    }
+
+    public void selectRestaurantMessage(RestaurantList restaurantList) {
+        Integer index = 1;
+        for (Restaurant restaurant : restaurantList.restaurants()) {
+            String message = String.format("%d. %s", index, restaurant.getName());
+            System.out.println(message);
+            index++;
+        }
     }
 
     private enum ConsoleMessage {

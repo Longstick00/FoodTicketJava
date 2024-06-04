@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "1",
+    "menuList": [
+      {
+        "name": "Jeyuk",
+        "price": 8000,
+        "timeSet": "BREAKFAST"
+      },
+      {
+        "name": "Ramen",
+        "price": 9000,
+        "timeSet": "LAUNCH"
+      },
+      {
+        "name": "Bibimbap",
+        "price": 8500,
+        "timeSet": "DINNER"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Restaurant B",
+    "menuList": [
+      {
+        "name": "Rice Noodle",
+        "price": 15,
+        "timeSet": "BREAKFAST"
+      },
+      {
+        "name": "Dduckboki",
+        "price": 25,
+        "timeSet": "LAUNCH"
+      },
+      {
+        "name": "bulgogi",
+        "price": 35,
+        "timeSet": "DINNER"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Restaurant B",
+    "menuList": [
+      {
+        "name": "Rice Noodle",
+        "price": 15,
+        "timeSet": "BREAKFAST"
+      },
+      {
+        "name": "Dduckboki",
+        "price": 25,
+        "timeSet": "DINNER"
+      },
+      {
+        "name": "bulgogi",
+        "price": 35,
+        "timeSet": "DINNER"
+      }
+    ]
+  }
+]

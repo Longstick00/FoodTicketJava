@@ -1,20 +1,21 @@
 package config;
 
 import service.MainService;
+import util.JsonConverter;
 import view.*;
 
 public class AppConfig {
 
     public MainService mainService() {
-        return new MainService(inputManager(), outputView());
+        return new MainService(inputManager(), outputView(), jsonConverter());
     }
 
     private InputManager inputManager() {
-        return new InputManager(inputView());
+        return new InputManager(inputView(), inputValidation());
     }
 
     private InputView inputView() {
-        return new InputView(inputValidation());
+        return new InputView();
     }
 
     private InputValidation inputValidation() {
@@ -23,5 +24,9 @@ public class AppConfig {
 
     private OutputView outputView() {
         return OutputView.getInstance();
+    }
+
+    private JsonConverter jsonConverter() {
+        return JsonConverter.create();
     }
 }
