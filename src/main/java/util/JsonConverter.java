@@ -12,24 +12,24 @@ public class JsonConverter {
 
     private static final String PATH = "C:\\Users\\78945\\IdeaProjects\\foodTicket\\";
 
-    public static <T> List<T> jsonToEntity(Class<T> clazz, String fileName) {
+    public static <T> List<T> jsonToEntity(Class<T> clazz, String path) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            File file = new File(PATH + fileName);
+            File file = new File(PATH + path);
             return objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(List.class, clazz));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static <T> void entityToJson(T object, String fileName) {
+    public static <T> void entityToJson(T object, String path) {
         ObjectMapper objectMapper = new ObjectMapper();
-        File file = new File(PATH + fileName);
+        File file = new File(PATH + path);
         List<T> dataList = new ArrayList<>();
 
         if (file.exists()) {
             try {
-                dataList = objectMapper.readValue(file, new TypeReference<>() {});
+                dataList = objectMapper.readValue(file, new TypeReference<List<T>>() {});
             } catch (IOException e) {
                 throw new RuntimeException("JSON 파일 읽기 실패", e);
             }
