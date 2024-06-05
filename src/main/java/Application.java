@@ -6,6 +6,10 @@ public class Application {
         AppConfig appConfig = new AppConfig();
 
         MainService mainService = appConfig.mainService();
-        mainService.runMainService();
+        try {
+            mainService.runMainService();
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

@@ -1,7 +1,6 @@
 package config;
 
 import service.MainService;
-import util.JsonConverter;
 import view.*;
 
 public class AppConfig {

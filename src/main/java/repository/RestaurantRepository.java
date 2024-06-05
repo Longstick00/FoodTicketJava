@@ -8,7 +8,7 @@ import java.util.List;
 public class RestaurantRepository {
 
     private static final List<Restaurant> restaurants =
-            JsonConverter.convertToEntity(Restaurant.class, "restaurant.json");
+            JsonConverter.jsonToEntity(Restaurant.class, "restaurant.json");
 
     public static List<Restaurant> get() {
         return restaurants;

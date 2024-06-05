@@ -29,9 +29,7 @@ public class OutputView {
     }
 
     public void selectMenuMessage(List<Menu> restaurant) {
-        System.out.println(ConsoleMessage.PROGRESS_BAR.message);
         System.out.println(ConsoleMessage.MENU_BAR.message);
-        System.out.println(ConsoleMessage.PROGRESS_BAR.message);
         for (Menu menu : restaurant) {
             String menuInfo = String.format(ConsoleMessage.MENU_PRICE.message, menu.getName(), menu.getPrice(), menu.getTimeSet());
             System.out.println(menuInfo);
@@ -49,6 +47,15 @@ public class OutputView {
         System.out.println(format);
     }
 
+    public void startAdminServiceMessage() {
+        System.out.println(ConsoleMessage.WELCOME_ADMIN.message);
+    }
+
+    public void printComplete(String name) {
+        String format = String.format(ConsoleMessage.COMPLETE.message, name);
+        System.out.println(format);
+    }
+
     private enum ConsoleMessage {
         WELCOME("""
             =========================================
@@ -61,8 +68,14 @@ public class OutputView {
         AMOUNT("%d원이 결제되었습니다. 남은 잔액은 %d원 입니다. \n" +
                 "감사합니다 :)"),
         PROGRESS_BAR("=========================================="),
-        MENU_BAR("|    메뉴      |   가격   |     시간대     |"),
-        MENU_PRICE("| %10s | %6d원 | %10s   |");
+        MENU_BAR("""
+            ==========================================
+            |    메뉴      |   가격   |     시간대     |
+            ==========================================
+            """),
+        MENU_PRICE("| %10s | %6d원 | %10s   |"),
+        WELCOME_ADMIN("관리자 서비스를 시작합니다."),
+        COMPLETE("%s 추가 완료했습니다.");
 
         private final String message;
 

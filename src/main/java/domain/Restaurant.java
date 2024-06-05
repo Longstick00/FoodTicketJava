@@ -1,21 +1,26 @@
 package domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Restaurant {
 
     private Long id;
     private String name;
     private List<Menu> menuList;
+    private Account admin;
+    private TimeSet timeSet;
 
     public Restaurant() {
     }
 
     public List<Menu> getMenuByTimeOfDay(TimeSet timeSet) {
-        return menuList.stream()
+        List<Menu> filterMenuList = menuList.stream()
                 .filter(menu -> menu.getTimeSet().equals(timeSet))
-                .collect(Collectors.toList());
+                .toList();
+        if (filterMenuList.isEmpty()) {
+            throw new IllegalStateException("현재 시간에 판매할 수 있는 메뉴가 없습니다. 다른 시간에 이용해주세요.");
+        }
+        return filterMenuList;
     }
 
     public Menu menuSelect(String selectedMenu) {

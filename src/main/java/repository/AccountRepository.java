@@ -8,7 +8,7 @@ import java.util.List;
 public class AccountRepository {
 
     private static final List<Account> accounts =
-            JsonConverter.convertToEntity(Account.class, "account.json");
+            JsonConverter.jsonToEntity(Account.class, "account.json");
 
     public static Account getById(String accountId) {
         return accounts.stream()

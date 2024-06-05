@@ -1,5 +1,6 @@
 package view;
 
+import constant.AdminProcess;
 import domain.Account;
 import domain.Menu;
 import domain.Restaurant;
@@ -30,5 +31,17 @@ public class InputManager {
     public Menu getSelectedMenu(Restaurant restaurant) {
         String menuName = inputView.getMenuName();
         return restaurant.menuSelect(menuName);
+    }
+
+    public AdminProcess getAdminProcess() {
+        String serviceNumber = inputView.getServiceNumber();
+        Integer adminProcessNum = inputValidation.stringToInt(serviceNumber);
+        return AdminProcess.getProcessNumByValue(adminProcessNum);
+    }
+
+    public Account getNewAccount() {
+        String accountInfo = inputView.getAccountInfo();
+        inputValidation.checkBlank(accountInfo);
+        return new Account(accountInfo);
     }
 }

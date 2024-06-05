@@ -14,31 +14,17 @@
         "timeSet": "LAUNCH"
       },
       {
-        "name": "고노도",
-        "price": 90001,
-        "timeSet": "LAUNCH"
-      },
-      {
-        "name": "기니디",
-        "price": 9,
-        "timeSet": "LAUNCH"
-      },
-      {
-        "name": "거너더",
-        "price": 90,
-        "timeSet": "LAUNCH"
-      },
-      {
-        "name": "구누두",
-        "price": 900,
-        "timeSet": "LAUNCH"
-      },
-      {
         "name": "Bibimbap",
         "price": 8500,
         "timeSet": "DINNER"
       }
-    ]
+    ],
+    "admin": {
+      "balance":100000,
+      "name":"man",
+      "role":"GENERAL"
+    },
+
   },
   {
     "id": 2,
