@@ -7,17 +7,14 @@ import java.util.List;
 
 public class AccountRepository {
 
-    private static final List<Account> accounts = JsonConverter.convertToEntity(Account.class, "user.json");
+    private static final List<Account> accounts =
+            JsonConverter.convertToEntity(Account.class, "account.json");
 
     public static Account getById(String accountId) {
         return accounts.stream()
                 .filter(a -> a.getName().equals(accountId))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 ID가 없습니다. 다시 입력해주세요."));
-    }
-
-    private static void validate(String accountId) {
-
     }
 
 }

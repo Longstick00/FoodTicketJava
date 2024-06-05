@@ -1,11 +1,11 @@
 [
   {
     "id": 1,
-    "name": "1",
+    "name": "기본식당",
     "menuList": [
       {
         "name": "Jeyuk",
-        "price": 8000,
+        "price": 8000000,
         "timeSet": "BREAKFAST"
       },
       {
@@ -42,7 +42,7 @@
   },
   {
     "id": 2,
-    "name": "Restaurant B",
+    "name": "맥도날드",
     "menuList": [
       {
         "name": "Rice Noodle",
@@ -62,8 +62,8 @@
     ]
   },
   {
-    "id": 2,
-    "name": "Restaurant B",
+    "id": 3,
+    "name": "초밥집",
     "menuList": [
       {
         "name": "Rice Noodle",

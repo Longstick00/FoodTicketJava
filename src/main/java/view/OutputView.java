@@ -2,7 +2,6 @@ package view;
 
 import domain.Menu;
 import domain.Restaurant;
-import repository.RestaurantRepository;
 import domain.TimeSet;
 
 import java.util.List;
@@ -45,24 +44,25 @@ public class OutputView {
         System.out.println(format);
     }
 
-    public void payMessage(Integer price) {
-        String format = String.format(ConsoleMessage.AMOUNT.message, price);
+    public void payMessage(Integer price, Long afterBalance) {
+        String format = String.format(ConsoleMessage.AMOUNT.message, price, afterBalance);
         System.out.println(format);
     }
 
     private enum ConsoleMessage {
         WELCOME("""
             =========================================
-            |               법틀의                  |
+            |               법틀의                   |
             |               식권대장                 |
-            |               서비스                  |
+            |               서비스                   |
             =========================================
             """),
         NOW_TIME_MESSAGE("현재 %s시간입니다. %s메뉴를 보여드릴게요."),
-        AMOUNT("%d원이 결제되었습니다."),
+        AMOUNT("%d원이 결제되었습니다. 남은 잔액은 %d원 입니다. \n" +
+                "감사합니다 :)"),
         PROGRESS_BAR("=========================================="),
-        MENU_BAR("|    메뉴    |   가격   |       시간대     |"),
-        MENU_PRICE("\"| %10s | %6d원 | %10s     |\"");
+        MENU_BAR("|    메뉴      |   가격   |     시간대     |"),
+        MENU_PRICE("| %10s | %6d원 | %10s   |");
 
         private final String message;
 

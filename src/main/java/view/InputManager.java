@@ -1,8 +1,10 @@
 package view;
 
 import domain.Account;
+import domain.Menu;
 import domain.Restaurant;
 import repository.AccountRepository;
+import repository.RestaurantRepository;
 
 public class InputManager {
 
@@ -22,10 +24,11 @@ public class InputManager {
 
     public Restaurant getSelectedRestaurant() {
         String restaurantName = inputView.getRestaurantName();
-        return null;
+        return RestaurantRepository.getByName(restaurantName);
     }
 
-    public String getSelectedMenu() {
-        return inputView.getMenuName();
+    public Menu getSelectedMenu(Restaurant restaurant) {
+        String menuName = inputView.getMenuName();
+        return restaurant.menuSelect(menuName);
     }
 }

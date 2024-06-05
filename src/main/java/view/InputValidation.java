@@ -9,8 +9,9 @@ public class InputValidation {
     }
 
     public void checkBlank(String input) {
+
         int before = input.length();
-        int after = input.trim().length();
+        int after = input.replaceAll(" ", "").length();
         if (before != after) {
             throw new IllegalArgumentException("공백을 제거해주세요");
         }

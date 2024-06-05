@@ -5,25 +5,11 @@ import java.util.stream.Collectors;
 
 public class Restaurant {
 
-    private Long restaurantId;
+    private Long id;
     private String name;
     private List<Menu> menuList;
 
-    public Restaurant(Long id, String name, List<Menu> menuList) {
-        this.restaurantId = id;
-        this.name = name;
-        this.menuList = menuList;
-    }
-
     public Restaurant() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<Menu> getMenuList() {
-        return menuList;
     }
 
     public List<Menu> getMenuByTimeOfDay(TimeSet timeSet) {
@@ -35,6 +21,19 @@ public class Restaurant {
     public Menu menuSelect(String selectedMenu) {
         return menuList.stream()
                 .filter(menu -> menu.getName().equals(selectedMenu))
-                .findFirst().get();
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당하는 메뉴가 없습니다. 다시 선택해주세요."));
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Menu> getMenuList() {
+        return menuList;
     }
 }

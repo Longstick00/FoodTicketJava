@@ -1,10 +1,6 @@
 package util;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import domain.Account;
-import domain.Restaurant;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,21 +12,12 @@ public class JsonConverter {
 
     public static <T> List<T> convertToEntity(Class<T> clazz, String path) {
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         try {
-            TypeReference<List<T>> typeReference = new TypeReference<>() {};
-            return objectMapper.readValue(new File(PATH), typeReference);
+            File file = new File(PATH + path);
+            return objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(List.class, clazz));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static List<Restaurant> convertToRestaurant() {
-        return convertToEntity(Restaurant.class, "info.json");
-    }
-
-    public static List<Account> convertToAccounts() {
-        return convertToEntity(Account.class, "user.json");
     }
 
 }
