@@ -3,7 +3,9 @@ package domain;
 public class Account {
 
     private String name;
+
     private Long balance;
+
     private Role role;
 
     public Account() {

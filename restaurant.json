@@ -1,71 +1,47 @@
 [
   {
     "id": 1,
-    "name": "기본식당",
+    "name": "The Gourmet Kitchen",
     "menuList": [
       {
-        "name": "Jeyuk",
-        "price": 8000000,
+        "name": "Pancake Breakfast",
+        "price": 12,
         "timeSet": "BREAKFAST"
       },
       {
-        "name": "가나다",
-        "price": 9230,
+        "name": "Lunch Special",
+        "price": 15,
         "timeSet": "LAUNCH"
       },
       {
-        "name": "Bibimbap",
-        "price": 8500,
+        "name": "Steak Dinner",
+        "price": 25,
         "timeSet": "DINNER"
       }
     ],
     "admin": {
-      "balance":100000,
-      "name":"man",
-      "role":"GENERAL"
+      "name": "John Doe",
+      "balance": 5000,
+      "role": "ADMIN"
     },
-
-  },
-  {
-    "id": 2,
-    "name": "맥도날드",
-    "menuList": [
-      {
-        "name": "Rice Noodle",
-        "price": 15,
-        "timeSet": "BREAKFAST"
-      },
-      {
-        "name": "Dduckboki",
-        "price": 25,
-        "timeSet": "LAUNCH"
-      },
-      {
-        "name": "bulgogi",
-        "price": 35,
-        "timeSet": "DINNER"
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "name": "초밥집",
-    "menuList": [
-      {
-        "name": "Rice Noodle",
-        "price": 15,
-        "timeSet": "BREAKFAST"
-      },
-      {
-        "name": "Dduckboki",
-        "price": 25,
-        "timeSet": "DINNER"
-      },
-      {
-        "name": "bulgogi",
-        "price": 35,
-        "timeSet": "DINNER"
-      }
-    ]
+    "timeTable": {
+      "timeRanges": [
+        {
+          "start": "06:30",
+          "end": "11:00",
+          "timeSet": "BREAKFAST"
+        },
+        {
+          "start": "11:00",
+          "end": "14:00",
+          "timeSet": "LAUNCH"
+        },
+        {
+          "start": "18:00",
+          "end": "22:00",
+          "timeSet": "DINNER"
+        }
+      ]
+    }
   }
 ]

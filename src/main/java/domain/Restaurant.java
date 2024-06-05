@@ -5,10 +5,14 @@ import java.util.List;
 public class Restaurant {
 
     private Long id;
+
     private String name;
+
     private List<Menu> menuList;
+
     private Account admin;
-    private TimeSet timeSet;
+
+    private TimeTable timeTable;
 
     public Restaurant() {
     }
@@ -40,5 +44,13 @@ public class Restaurant {
 
     public List<Menu> getMenuList() {
         return menuList;
+    }
+
+    public Account getAdmin() {
+        return admin;
+    }
+
+    public TimeTable getTimeTable() {
+        return timeTable;
     }
 }

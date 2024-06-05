@@ -22,6 +22,8 @@ public class MainService {
     }
 
     public void runMainService() {
+        List<Restaurant> restaurants = RestaurantRepository.get();
+        System.out.println();
         Account userAccount = getAccount();
         if (userAccount.getRole().equals(Role.ADMIN)) {
             adminService(userAccount);

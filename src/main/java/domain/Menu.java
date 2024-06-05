@@ -3,7 +3,9 @@ package domain;
 public class Menu {
 
     private String name;
+
     private Integer price;
+
     private TimeSet timeSet;
 
     public Menu(String name, Integer price, TimeSet timeSet) {
