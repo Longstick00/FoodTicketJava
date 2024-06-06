@@ -20,28 +20,9 @@
       }
     ],
     "admin": {
-      "name": "John Doe",
+      "name": "happy",
       "balance": 5000,
       "role": "ADMIN"
-    },
-    "timeTable": {
-      "timeRanges": [
-        {
-          "start": "06:30",
-          "end": "11:00",
-          "timeSet": "BREAKFAST"
-        },
-        {
-          "start": "11:00",
-          "end": "14:00",
-          "timeSet": "LAUNCH"
-        },
-        {
-          "start": "18:00",
-          "end": "22:00",
-          "timeSet": "DINNER"
-        }
-      ]
     }
   }
 ]

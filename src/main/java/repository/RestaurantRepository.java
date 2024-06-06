@@ -10,6 +10,12 @@ public class RestaurantRepository {
     private static final List<Restaurant> restaurants =
             JsonConverter.jsonToEntity(Restaurant.class, "restaurant.json");
 
+    static {
+        for (Restaurant restaurant : restaurants) {
+            restaurant.setDefaultTimeSet();
+        }
+    }
+
     public static List<Restaurant> get() {
         return restaurants;
     }

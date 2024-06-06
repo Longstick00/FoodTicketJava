@@ -1,7 +1,12 @@
 package service;
 
 import constant.AdminProcess;
-import domain.*;
+import domain.Account;
+import domain.Menu;
+import domain.Restaurant;
+import domain.Role;
+import domain.time.DefaultTimeSet;
+import domain.time.TimeTable;
 import repository.RestaurantRepository;
 import util.ExceptionHandler;
 import util.JsonConverter;
@@ -22,7 +27,6 @@ public class MainService {
     }
 
     public void runMainService() {
-        List<Restaurant> restaurants = RestaurantRepository.get();
         System.out.println();
         Account userAccount = getAccount();
         if (userAccount.getRole().equals(Role.ADMIN)) {
@@ -34,7 +38,6 @@ public class MainService {
     }
 
     private void adminService(Account userAccount) {
-        outputView.startAdminServiceMessage();
         AdminProcess adminProcess = inputManager.getAdminProcess();
 
         switch (adminProcess) {
@@ -42,6 +45,15 @@ public class MainService {
                 makeAccount();
             }
             case CHANGE_TIME_SET -> {
+                List<Restaurant> restaurants = RestaurantRepository.get();
+                Restaurant restaurant = restaurants.stream()
+                        .filter(r -> r.isAdmin(userAccount.getName()))
+                        .findFirst().get();
+
+                outputView.printTimeTable(restaurant.getTimeTable());
+                inputManager.getCorrectionTime();
+            }
+            case RESTART -> {
 
             }
             case EXIT -> {
@@ -49,6 +61,14 @@ public class MainService {
             }
 
         }
+    }
+
+    private void checkAuth(Account userAccount) {
+
+    }
+
+    private void changeTime(Restaurant restaurant) {
+
     }
 
     private void makeAccount() {
@@ -75,7 +95,7 @@ public class MainService {
     }
 
     private Menu getSelectedMenu(final Restaurant restaurant) {
-        TimeSet nowTimeSet = TimeSet.getTimeSet();
+        DefaultTimeSet nowTimeSet = TimeTable.getTimeSet();
 
         List<Menu> menuListByTimeSet = restaurant.getMenuByTimeOfDay(nowTimeSet);
         outputView.currentTimeMessage(nowTimeSet);

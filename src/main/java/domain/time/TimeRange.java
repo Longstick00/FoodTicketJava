@@ -1,4 +1,4 @@
-package domain;
+package domain.time;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -14,7 +14,10 @@ public class TimeRange {
 
     private TimeSet timeSet;
 
-    public TimeRange() {
+    public TimeRange(LocalTime start, LocalTime end, TimeSet timeSet) {
+        this.start = start;
+        this.end = end;
+        this.timeSet = timeSet;
     }
 
     public LocalTime getStart() {

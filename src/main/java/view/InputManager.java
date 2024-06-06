@@ -44,4 +44,8 @@ public class InputManager {
         inputValidation.checkBlank(accountInfo);
         return new Account(accountInfo);
     }
+
+    public void getCorrectionTime() {
+
+    }
 }

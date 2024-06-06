@@ -3,7 +3,7 @@ package constant;
 import java.util.stream.Stream;
 
 public enum AdminProcess {
-    NEW_USER(1), CHANGE_TIME_SET(2), EXIT(3);
+    NEW_USER(1), CHANGE_TIME_SET(2), RESTART(3) ,EXIT(4);
 
     private final Integer num;
 

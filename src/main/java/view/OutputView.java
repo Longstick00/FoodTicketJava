@@ -2,7 +2,9 @@ package view;
 
 import domain.Menu;
 import domain.Restaurant;
-import domain.TimeSet;
+import domain.time.DefaultTimeSet;
+import domain.time.TimeRange;
+import domain.time.TimeTable;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class OutputView {
     }
 
     public void welcomeMessage() {
-        System.out.println(ConsoleMessage.WELCOME.message);
+        System.out.print(ConsoleMessage.WELCOME.message);
     }
 
     public void selectRestaurantMessage(List<Restaurant> restaurants) {
@@ -37,7 +39,7 @@ public class OutputView {
         System.out.println(ConsoleMessage.PROGRESS_BAR.message);
     }
 
-    public void currentTimeMessage(TimeSet timeSet) {
+    public void currentTimeMessage(DefaultTimeSet timeSet) {
         String format = String.format(ConsoleMessage.NOW_TIME_MESSAGE.message, timeSet, timeSet);
         System.out.println(format);
     }
@@ -47,13 +49,23 @@ public class OutputView {
         System.out.println(format);
     }
 
-    public void startAdminServiceMessage() {
-        System.out.println(ConsoleMessage.WELCOME_ADMIN.message);
-    }
-
     public void printComplete(String name) {
         String format = String.format(ConsoleMessage.COMPLETE.message, name);
         System.out.println(format);
+    }
+
+    public void printTimeTable(TimeTable timeTable) {
+        System.out.println(ConsoleMessage.PROGRESS_BAR.message);
+        System.out.println(ConsoleMessage.TIME_BAR.message);
+        for (TimeRange timeRange : timeTable.getTimeRanges()) {
+            String format = String.format(ConsoleMessage.TIMETABLE.message,
+                    timeRange.getStart(),
+                    timeRange.getEnd(),
+                    timeRange.getTimeSet().name()
+            );
+            System.out.println(format);
+        }
+        System.out.println(ConsoleMessage.PROGRESS_BAR.message);
     }
 
     private enum ConsoleMessage {
@@ -74,8 +86,9 @@ public class OutputView {
             ==========================================
             """),
         MENU_PRICE("| %10s | %6d원 | %10s   |"),
-        WELCOME_ADMIN("관리자 서비스를 시작합니다."),
-        COMPLETE("%s 추가 완료했습니다.");
+        COMPLETE("%s 추가 완료했습니다."),
+        TIMETABLE("| %-10s | %-10s | %-10s |"),
+        TIME_BAR("| 시작시간    | 종료시간    | 시간대     |");
 
         private final String message;
 
