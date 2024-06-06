@@ -2,8 +2,10 @@ package domain;
 
 import domain.time.DefaultTimeSet;
 import domain.time.TimeRange;
+import domain.time.TimeSet;
 import domain.time.TimeTable;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public class Restaurant {
@@ -21,7 +23,7 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public List<Menu> getMenuByTimeOfDay(DefaultTimeSet timeSet) {
+    public List<Menu> getMenuByTimeOfDay(TimeSet timeSet) {
         List<Menu> filterMenuList = menuList.stream()
                 .filter(menu -> menu.getTimeSet().equals(timeSet))
                 .toList();
@@ -36,6 +38,14 @@ public class Restaurant {
                 .filter(menu -> menu.getName().equals(selectedMenu))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 메뉴가 없습니다. 다시 선택해주세요."));
+    }
+
+    public void updateTimeTable(TimeSet timeSet, String timeType, LocalTime time) {
+        TimeRange range = timeTable.getTimeRanges().stream()
+                .filter(r -> r.getTimeSet().equals(timeSet))
+                .findFirst()
+                .get();
+        range.updateTime(timeType, time);
     }
 
     public boolean isAdmin(String adminName) {

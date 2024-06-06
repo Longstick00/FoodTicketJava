@@ -20,11 +20,19 @@ public class TimeTable {
         this.timeRanges = timeRanges;
     }
 
-    public static DefaultTimeSet getTimeSet() {
-        LocalTime now = LocalTime.now();
-        return Arrays.stream(DefaultTimeSet.values())
+    public TimeSet findTimeRange(String timeSet) {
+        TimeRange range = timeRanges.stream()
+                .filter(set -> set.getTimeSet().name().equals(timeSet))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("현재 주문 가능한 메뉴가 없거나 가게가 운영중이지 않습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("시간대 입력값을 다시 확인해주세요."));
+        return range.getTimeSet();
+    }
+
+    public TimeSet findTimeSet(LocalTime now) {
+        return timeRanges.stream()
+                .filter(range -> range.findNowTimeSet(now))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("현재 시간대에 주문 가능한 메뉴가 없습니다.")).getTimeSet();
     }
 
     public List<TimeRange> getTimeRanges() {

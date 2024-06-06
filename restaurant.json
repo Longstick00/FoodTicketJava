@@ -1,28 +1,95 @@
 [
   {
     "id": 1,
-    "name": "The Gourmet Kitchen",
+    "name": "기본식당",
     "menuList": [
       {
-        "name": "Pancake Breakfast",
-        "price": 12,
+        "name": "제육",
+        "price": 8000,
         "timeSet": "BREAKFAST"
       },
       {
-        "name": "Lunch Special",
-        "price": 15,
+        "name": "낙지",
+        "price": 8000,
         "timeSet": "LAUNCH"
       },
       {
-        "name": "Steak Dinner",
-        "price": 25,
+        "name": "정식",
+        "price": 8000,
+        "timeSet": "LAUNCH"
+      },
+      {
+        "name": "김치찌개",
+        "price": 8000,
+        "timeSet": "LAUNCH"
+      },
+      {
+        "name": "된장찌개",
+        "price": 9230,
+        "timeSet": "LAUNCH"
+      },
+      {
+        "name": "비빔밥",
+        "price": 8500,
         "timeSet": "DINNER"
       }
     ],
     "admin": {
-      "name": "happy",
-      "balance": 5000,
-      "role": "ADMIN"
+      "balance":100000,
+      "name":"jang",
+      "role":"GENERAL"
+    }
+  },
+  {
+    "id": 2,
+    "name": "맥도날드",
+    "menuList": [
+      {
+        "name": "빅맥",
+        "price": 7000,
+        "timeSet": "BREAKFAST"
+      },
+      {
+        "name": "1955",
+        "price": 8000,
+        "timeSet": "LAUNCH"
+      },
+      {
+        "name": "베토디",
+        "price": 7500,
+        "timeSet": "DINNER"
+      }
+    ],
+    "admin": {
+      "balance":100000,
+      "name":"kim",
+      "role":"GENERAL"
+    }
+  },
+  {
+    "id": 3,
+    "name": "초밥집",
+    "menuList": [
+      {
+        "name": "연어",
+        "price": 13000,
+        "timeSet": "BREAKFAST"
+      },
+      {
+        "name": "광어",
+        "price": 15000,
+        "timeSet": "DINNER"
+      },
+      {
+        "name": "불고기초밥",
+        "price": 20000,
+        "timeSet": "DINNER"
+      }
+    ],
+    "admin": {
+      "balance":100000,
+      "name":"lee",
+      "role":"GENERAL"
     }
   }
 ]

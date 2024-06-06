@@ -4,8 +4,14 @@ import constant.AdminProcess;
 import domain.Account;
 import domain.Menu;
 import domain.Restaurant;
+import domain.time.TimeRange;
+import domain.time.TimeSet;
+import domain.time.TimeTable;
 import repository.AccountRepository;
 import repository.RestaurantRepository;
+
+import java.time.LocalTime;
+import java.util.function.Supplier;
 
 public class InputManager {
 
@@ -45,7 +51,20 @@ public class InputManager {
         return new Account(accountInfo);
     }
 
-    public void getCorrectionTime() {
+    public TimeSet getCorrectionTimeSet(TimeTable timeTable) {
+        String timeSet = inputView.getTimeSet();
+        return timeTable.findTimeRange(timeSet);
+    }
 
+    public String getSelectedTimeType() {
+        String timeType = inputView.getTimeType();
+        inputValidation.checkTimeType(timeType);
+        return timeType;
+    }
+
+    public LocalTime getCorrectionTime() {
+        String correctionTime = inputView.getCorrectionTime();
+        String[] split = correctionTime.split(":");
+        return LocalTime.of(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
     }
 }

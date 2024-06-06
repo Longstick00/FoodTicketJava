@@ -20,6 +20,19 @@ public class TimeRange {
         this.timeSet = timeSet;
     }
 
+    public void updateTime(String timeType, LocalTime time) {
+        if (timeType.equals("시작시간")) {
+            start = time;
+        }
+        if (timeType.equals("종료시간")) {
+            end = time;
+        }
+    }
+
+    public boolean findNowTimeSet(LocalTime now) {
+        return start.isBefore(now) && end.isAfter(now);
+    }
+
     public LocalTime getStart() {
         return start;
     }
@@ -31,4 +44,5 @@ public class TimeRange {
     public TimeSet getTimeSet() {
         return timeSet;
     }
+
 }

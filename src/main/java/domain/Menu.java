@@ -1,6 +1,6 @@
 package domain;
 
-import domain.time.DefaultTimeSet;
+import domain.time.TimeSet;
 
 public class Menu {
 
@@ -8,9 +8,9 @@ public class Menu {
 
     private Integer price;
 
-    private DefaultTimeSet timeSet;
+    private TimeSet timeSet;
 
-    public Menu(String name, Integer price, DefaultTimeSet timeSet) {
+    public Menu(String name, Integer price, TimeSet timeSet) {
         this.name = name;
         this.price = price;
         this.timeSet = timeSet;
@@ -27,7 +27,7 @@ public class Menu {
         return price;
     }
 
-    public DefaultTimeSet getTimeSet() {
+    public TimeSet getTimeSet() {
         return timeSet;
     }
 }

@@ -24,4 +24,7 @@ public class InputValidation {
         }
     }
 
+    public void checkTimeType(String input) {
+        if(!input.equals("시작시간") && !input.equals("종료시간")) throw new IllegalArgumentException("입력값을 다시 확인해주세요. (ex. 시작시간, 종료시간)");
+    }
 }

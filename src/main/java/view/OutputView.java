@@ -4,6 +4,7 @@ import domain.Menu;
 import domain.Restaurant;
 import domain.time.DefaultTimeSet;
 import domain.time.TimeRange;
+import domain.time.TimeSet;
 import domain.time.TimeTable;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class OutputView {
     }
 
     public void selectMenuMessage(List<Menu> restaurant) {
-        System.out.println(ConsoleMessage.MENU_BAR.message);
+        System.out.print(ConsoleMessage.MENU_BAR.message);
         for (Menu menu : restaurant) {
             String menuInfo = String.format(ConsoleMessage.MENU_PRICE.message, menu.getName(), menu.getPrice(), menu.getTimeSet());
             System.out.println(menuInfo);
@@ -39,7 +40,7 @@ public class OutputView {
         System.out.println(ConsoleMessage.PROGRESS_BAR.message);
     }
 
-    public void currentTimeMessage(DefaultTimeSet timeSet) {
+    public void currentTimeMessage(TimeSet timeSet) {
         String format = String.format(ConsoleMessage.NOW_TIME_MESSAGE.message, timeSet, timeSet);
         System.out.println(format);
     }
@@ -82,10 +83,10 @@ public class OutputView {
         PROGRESS_BAR("=========================================="),
         MENU_BAR("""
             ==========================================
-            |    메뉴      |   가격   |     시간대     |
+            |     메뉴     |   가격   |     시간대     |
             ==========================================
             """),
-        MENU_PRICE("| %10s | %6d원 | %10s   |"),
+        MENU_PRICE("| %6s | %6d원 | %10s   |"),
         COMPLETE("%s 추가 완료했습니다."),
         TIMETABLE("| %-10s | %-10s | %-10s |"),
         TIME_BAR("| 시작시간    | 종료시간    | 시간대     |");

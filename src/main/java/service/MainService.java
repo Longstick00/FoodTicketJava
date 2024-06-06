@@ -6,6 +6,8 @@ import domain.Menu;
 import domain.Restaurant;
 import domain.Role;
 import domain.time.DefaultTimeSet;
+import domain.time.TimeRange;
+import domain.time.TimeSet;
 import domain.time.TimeTable;
 import repository.RestaurantRepository;
 import util.ExceptionHandler;
@@ -13,6 +15,7 @@ import util.JsonConverter;
 import view.InputManager;
 import view.OutputView;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public class MainService {
@@ -27,7 +30,6 @@ public class MainService {
     }
 
     public void runMainService() {
-        System.out.println();
         Account userAccount = getAccount();
         if (userAccount.getRole().equals(Role.ADMIN)) {
             adminService(userAccount);
@@ -51,16 +53,20 @@ public class MainService {
                         .findFirst().get();
 
                 outputView.printTimeTable(restaurant.getTimeTable());
-                inputManager.getCorrectionTime();
+                TimeSet timeSet = ExceptionHandler.handle(inputManager::getCorrectionTimeSet, restaurant.getTimeTable());
+                String timeType = ExceptionHandler.handle(inputManager::getSelectedTimeType);
+                LocalTime time = ExceptionHandler.handle(inputManager::getCorrectionTime);
+
+                restaurant.updateTimeTable(timeSet, timeType, time);
+                System.out.println("변경 완료");
             }
             case RESTART -> {
-
             }
             case EXIT -> {
-
+                return;
             }
-
         }
+        runMainService();
     }
 
     private void checkAuth(Account userAccount) {
@@ -95,7 +101,9 @@ public class MainService {
     }
 
     private Menu getSelectedMenu(final Restaurant restaurant) {
-        DefaultTimeSet nowTimeSet = TimeTable.getTimeSet();
+        LocalTime now = LocalTime.now();
+        TimeTable timeTable = restaurant.getTimeTable();
+        TimeSet nowTimeSet = timeTable.findTimeSet(now);
 
         List<Menu> menuListByTimeSet = restaurant.getMenuByTimeOfDay(nowTimeSet);
         outputView.currentTimeMessage(nowTimeSet);

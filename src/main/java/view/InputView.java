@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private Scanner scanner;
-
     public InputView() {
     }
 
@@ -34,8 +32,23 @@ public class InputView {
         return getInput();
     }
 
+    public String getTimeSet() {
+        System.out.println(ConsoleMessage.SELECT_TIMESET.message);
+        return getInput();
+    }
+
+    public String getTimeType() {
+        System.out.println(ConsoleMessage.SELECT_TIME_TYPE.message);
+        return getInput();
+    }
+
+    public String getCorrectionTime() {
+        System.out.println(ConsoleMessage.INPUT_TIME.message);
+        return getInput();
+    }
+
     private String getInput() {
-        scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
@@ -47,10 +60,14 @@ public class InputView {
                 관리자 서비스를 시작합니다.
                 사용하실 서비스를 선택해주세요.
                 1. 유저 추가
-                2. 가게 시간 변경
-                3. 종료
+                2. 시간대 변경
+                3. 관리자 서비스 종료
+                4. 프로그램 종료
                 """),
-        MAKE_NEW_USER("추가하실 유저 이름을 입력해주세요.");
+        MAKE_NEW_USER("추가하실 유저 이름을 입력해주세요."),
+        SELECT_TIMESET("변경하실 시간대를 입력해주세요.(ex. DINNER)"),
+        SELECT_TIME_TYPE("시작시각과 종료시각 중 하나를 선택해주세요."),
+        INPUT_TIME("변경하실 시각을 입력해주세요.(ex. 10:00)");
 
         private final String message;
 
