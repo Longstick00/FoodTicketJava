@@ -7,6 +7,7 @@ import domain.Restaurant;
 import domain.Role;
 import domain.time.TimeSet;
 import domain.time.TimeTable;
+import repository.AccountRepository;
 import repository.RestaurantRepository;
 import util.ExceptionHandler;
 import util.JsonConverter;
@@ -37,7 +38,7 @@ public class MainService {
         }
     }
 
-    private void adminService(Account userAccount) {
+    private void adminService(final Account userAccount) {
         AdminProcess adminProcess = inputManager.getAdminProcess();
 
         switch (adminProcess) {
@@ -52,7 +53,7 @@ public class MainService {
         runMainService();
     }
 
-    private void changeTimeSet(Account userAccount) {
+    private void changeTimeSet(final Account userAccount) {
         List<Restaurant> restaurants = RestaurantRepository.get();
         Restaurant restaurant = restaurants.stream()
                 .filter(r -> r.isAdmin(userAccount.getName()))
@@ -61,23 +62,28 @@ public class MainService {
         changeTime(restaurant);
     }
 
-    private void changeTime(Restaurant restaurant) {
+    private void changeTime(final Restaurant restaurant) {
         outputView.printTimeTable(restaurant.getTimeTable());
         TimeSet timeSet = ExceptionHandler.handle(inputManager::getCorrectionTimeSet, restaurant.getTimeTable());
         String timeType = ExceptionHandler.handle(inputManager::getSelectedTimeType);
-        LocalTime time = ExceptionHandler.handle(inputManager::getCorrectionTime);
 
-        restaurant.updateTimeTable(timeSet, timeType, time);
+        ExceptionHandler.handle(() -> {
+            LocalTime time = ExceptionHandler.handle(inputManager::getCorrectionTime);
+            restaurant.updateTimeTable(timeSet, timeType, time);
+        });
+
         System.out.println("변경 완료");
     }
 
     private void makeAccount() {
         Account newAccount = inputManager.getNewAccount();
+        AccountRepository.checkDuplicate(newAccount.getName());
+
         JsonConverter.entityToJson(newAccount, "account.json");
         outputView.printComplete(newAccount.getName());
     }
 
-    private void orderService(Account userAccount) {
+    private void orderService(final Account userAccount) {
         Restaurant restaurant = getSelectedRestaurant();
 
         Menu menu = getSelectedMenu(restaurant);
@@ -106,7 +112,7 @@ public class MainService {
         return ExceptionHandler.handle(inputManager::getSelectedMenu, restaurant);
     }
 
-    private void payPrice(Account userAccount, Menu menu) {
+    private void payPrice(final Account userAccount, final Menu menu) {
         Long afterBalance = userAccount.pay(menu.getPrice());
         outputView.payMessage(menu.getPrice(), afterBalance);
     }

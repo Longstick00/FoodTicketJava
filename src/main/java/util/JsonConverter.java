@@ -13,7 +13,7 @@ public class JsonConverter {
     private static final String PATH = "C:\\Users\\78945\\IdeaProjects\\foodTicket\\";
 //    private static final String PATH = "C:\\Users\\laptop\\Desktop\\놀이방\\FoodTicketJava\\";
 
-    public static <T> List<T> jsonToEntity(Class<T> clazz, String path) {
+    public static <T> List<T> jsonToEntity(final Class<T> clazz, final String path) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             File file = new File(PATH + path);
@@ -23,7 +23,7 @@ public class JsonConverter {
         }
     }
 
-    public static <T> void entityToJson(T object, String path) {
+    public static <T> void entityToJson(final T object, final String path) {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(PATH + path);
         List<T> dataList = new ArrayList<>();

@@ -12,16 +12,19 @@ public class OutputView {
 
     private static final OutputView instance = new OutputView();
 
-    public static OutputView getInstance() {
+    public static OutputView create() {
         instance.welcomeMessage();
-        return instance;
+        return new OutputView();
+    }
+
+    private OutputView() {
     }
 
     public void welcomeMessage() {
         System.out.print(ConsoleMessage.WELCOME.message);
     }
 
-    public void selectRestaurantMessage(List<Restaurant> restaurants) {
+    public void selectRestaurantMessage(final List<Restaurant> restaurants) {
         Integer index = 1;
         for (Restaurant restaurant : restaurants) {
             String message = String.format("%d. %s", index, restaurant.getName());
@@ -30,7 +33,7 @@ public class OutputView {
         }
     }
 
-    public void selectMenuMessage(List<Menu> restaurant) {
+    public void selectMenuMessage(final List<Menu> restaurant) {
         System.out.print(ConsoleMessage.MENU_BAR.message);
         for (Menu menu : restaurant) {
             String menuInfo = String.format(ConsoleMessage.MENU_PRICE.message, menu.getName(), menu.getPrice(), menu.getTimeSet());
@@ -39,22 +42,22 @@ public class OutputView {
         System.out.println(ConsoleMessage.PROGRESS_BAR.message);
     }
 
-    public void currentTimeMessage(TimeSet timeSet) {
+    public void currentTimeMessage(final TimeSet timeSet) {
         String format = String.format(ConsoleMessage.NOW_TIME_MESSAGE.message, timeSet, timeSet);
         System.out.println(format);
     }
 
-    public void payMessage(Integer price, Long afterBalance) {
+    public void payMessage(final Integer price, final Long afterBalance) {
         String format = String.format(ConsoleMessage.AMOUNT.message, price, afterBalance);
         System.out.println(format);
     }
 
-    public void printComplete(String name) {
+    public void printComplete(final String name) {
         String format = String.format(ConsoleMessage.COMPLETE.message, name);
         System.out.println(format);
     }
 
-    public void printTimeTable(TimeTable timeTable) {
+    public void printTimeTable(final TimeTable timeTable) {
         System.out.println(ConsoleMessage.PROGRESS_BAR.message);
         System.out.println(ConsoleMessage.TIME_BAR.message);
         for (TimeRange timeRange : timeTable.getTimeRanges()) {
@@ -92,7 +95,7 @@ public class OutputView {
 
         private final String message;
 
-        ConsoleMessage(String message) {
+        ConsoleMessage(final String message) {
             this.message = message;
         }
 

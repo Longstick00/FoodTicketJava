@@ -12,15 +12,17 @@ public class TimeRange {
     @JsonFormat(pattern = "kk:mm")
     private LocalTime end;
 
-    private TimeSet timeSet;
+    private final TimeSet timeSet;
 
-    public TimeRange(LocalTime start, LocalTime end, TimeSet timeSet) {
+    public TimeRange(final LocalTime start,
+                     final LocalTime end,
+                     final TimeSet timeSet) {
         this.start = start;
         this.end = end;
         this.timeSet = timeSet;
     }
 
-    public void updateTime(String timeType, LocalTime time) {
+    public void updateTime(final String timeType, final LocalTime time) {
         if (timeType.equals("시작시간")) {
             start = time;
         }
@@ -29,7 +31,7 @@ public class TimeRange {
         }
     }
 
-    public boolean findNowTimeSet(LocalTime now) {
+    public boolean findNowTimeSet(final LocalTime now) {
         return start.isBefore(now) && end.isAfter(now);
     }
 

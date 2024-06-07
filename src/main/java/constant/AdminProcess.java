@@ -7,11 +7,11 @@ public enum AdminProcess {
 
     private final Integer num;
 
-    AdminProcess(Integer num) {
+    AdminProcess(final Integer num) {
         this.num = num;
     }
 
-    public static AdminProcess getProcessNumByValue(Integer value) {
+    public static AdminProcess getProcessNumByValue(final Integer value) {
         return Stream.of(values())
                 .filter(n -> n.num.equals(value))
                 .findFirst()

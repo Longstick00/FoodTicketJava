@@ -32,7 +32,7 @@ public class InputManager {
         return RestaurantRepository.getByName(restaurantName);
     }
 
-    public Menu getSelectedMenu(Restaurant restaurant) {
+    public Menu getSelectedMenu(final Restaurant restaurant) {
         String menuName = inputView.getMenuName();
         return restaurant.menuSelect(menuName);
     }
@@ -49,7 +49,7 @@ public class InputManager {
         return new Account(accountInfo);
     }
 
-    public TimeSet getCorrectionTimeSet(TimeTable timeTable) {
+    public TimeSet getCorrectionTimeSet(final TimeTable timeTable) {
         String timeSet = inputView.getTimeSet();
         return timeTable.findTimeRange(timeSet);
     }
@@ -63,6 +63,7 @@ public class InputManager {
     public LocalTime getCorrectionTime() {
         String correctionTime = inputView.getCorrectionTime();
         String[] split = correctionTime.split(":");
+        inputValidation.checkTime(split);
         return LocalTime.of(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
     }
 }

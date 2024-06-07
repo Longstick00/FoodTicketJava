@@ -10,7 +10,7 @@ public enum DefaultTimeSet {
     private final LocalTime start;
     private final LocalTime finish;
 
-    DefaultTimeSet(LocalTime start, LocalTime finish) {
+    DefaultTimeSet(final LocalTime start, final LocalTime finish) {
         this.start = start;
         this.finish = finish;
     }

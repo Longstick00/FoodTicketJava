@@ -9,8 +9,6 @@ import java.util.List;
 
 public class Restaurant {
 
-    private Long id;
-
     private String name;
 
     private List<Menu> menuList;
@@ -22,7 +20,7 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public List<Menu> getMenuByTimeOfDay(TimeSet timeSet) {
+    public List<Menu> getMenuByTimeOfDay(final TimeSet timeSet) {
         List<Menu> filterMenuList = menuList.stream()
                 .filter(menu -> menu.getTimeSet().equals(timeSet))
                 .toList();
@@ -32,31 +30,30 @@ public class Restaurant {
         return filterMenuList;
     }
 
-    public Menu menuSelect(String selectedMenu) {
+    public Menu menuSelect(final String selectedMenu) {
         return menuList.stream()
                 .filter(menu -> menu.getName().equals(selectedMenu))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 메뉴가 없습니다. 다시 선택해주세요."));
     }
 
-    public void updateTimeTable(TimeSet timeSet, String timeType, LocalTime time) {
+    public void updateTimeTable(final TimeSet timeSet,
+                                final String timeType,
+                                final LocalTime time) {
         TimeRange range = timeTable.getTimeRanges().stream()
                 .filter(r -> r.getTimeSet().equals(timeSet))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(""));
+        timeTable.checkTimeTable(timeSet, timeType, time);
         range.updateTime(timeType, time);
     }
 
-    public boolean isAdmin(String adminName) {
+    public boolean isAdmin(final String adminName) {
         return this.admin.getName().equals(adminName);
     }
 
     public void setDefaultTimeSet() {
         this.timeTable = TimeTable.defaultTimeTable();
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {

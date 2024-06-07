@@ -21,11 +21,11 @@ public class AppConfig {
     }
 
     private InputValidation inputValidation() {
-        return InputValidation.getInstance();
+        return InputValidation.create();
     }
 
     private OutputView outputView() {
-        return OutputView.getInstance();
+        return OutputView.create();
     }
 
 }

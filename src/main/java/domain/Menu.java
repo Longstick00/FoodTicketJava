@@ -10,12 +10,6 @@ public class Menu {
 
     private TimeSet timeSet;
 
-    public Menu(String name, Integer price, TimeSet timeSet) {
-        this.name = name;
-        this.price = price;
-        this.timeSet = timeSet;
-    }
-
     public Menu() {
     }
 

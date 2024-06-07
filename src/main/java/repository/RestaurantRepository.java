@@ -20,7 +20,7 @@ public class RestaurantRepository {
         return restaurants;
     }
 
-    public static Restaurant getByName(String name) {
+    public static Restaurant getByName(final String name) {
         return restaurants.stream()
                 .filter(a -> a.getName().equals(name))
                 .findFirst()

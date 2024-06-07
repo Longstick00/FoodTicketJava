@@ -66,12 +66,12 @@ public class InputView {
                 """),
         MAKE_NEW_USER("추가하실 유저 이름을 입력해주세요."),
         SELECT_TIME_SET("변경하실 시간대를 입력해주세요.(ex. DINNER)"),
-        SELECT_TIME_TYPE("시작시각과 종료시각 중 하나를 선택해주세요."),
-        INPUT_TIME("변경하실 시각을 입력해주세요.(ex. 10:00)");
+        SELECT_TIME_TYPE("시작시간과 종료시간 중 하나를 선택해주세요.(ex. 시작시간)"),
+        INPUT_TIME("변경하실 시각을 입력해주세요.(ex. 06:00, 11:00, 18:00)");
 
         private final String message;
 
-        ConsoleMessage(String message) {
+        ConsoleMessage(final String message) {
             this.message = message;
         }
 

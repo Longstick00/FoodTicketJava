@@ -11,19 +11,19 @@ public class Account {
     public Account() {
     }
 
-    public Account(String name) {
+    public Account(final String name) {
         this.name = name;
         this.balance = 100000L;
         this.role = Role.GENERAL;
     }
 
-    public Long pay(Integer price) {
+    public Long pay(final Integer price) {
         checkNegative(price);
         balance -= price;
         return this.balance;
     }
 
-    private void checkNegative(Integer price) {
+    private void checkNegative(final Integer price) {
         if (this.balance - price < 0) {
             throw new IllegalStateException("잔액이 부족합니다.");
         }
