@@ -17,7 +17,7 @@ public class AppConfig {
     }
 
     private InputView inputView() {
-        return new InputView();
+        return InputView.create();
     }
 
     private InputValidation inputValidation() {
@@ -27,5 +27,4 @@ public class AppConfig {
     private OutputView outputView() {
         return OutputView.create();
     }
-
 }

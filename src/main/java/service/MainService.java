@@ -39,7 +39,7 @@ public class MainService {
     }
 
     private void adminService(final Account userAccount) {
-        AdminProcess adminProcess = inputManager.getAdminProcess();
+        AdminProcess adminProcess = ExceptionHandler.handle(inputManager::getAdminProcess);
 
         switch (adminProcess) {
             case NEW_USER -> makeAccount();

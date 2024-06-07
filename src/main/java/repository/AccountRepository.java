@@ -7,6 +7,7 @@ import java.util.List;
 
 public class AccountRepository {
     private static final String FILE_NAME = "account.json";
+
     private static List<Account> accounts;
 
     static {

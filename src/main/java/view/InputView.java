@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 public class InputView {
 
-    public InputView() {
+    private InputView() {
+    }
+
+    public static InputView create() {
+        return new InputView();
     }
 
     public String getAccountId() {
