@@ -1,7 +1,10 @@
 package config;
 
 import service.MainService;
-import view.*;
+import view.InputManager;
+import view.InputValidation;
+import view.InputView;
+import view.OutputView;
 
 public class AppConfig {
 

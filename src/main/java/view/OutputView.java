@@ -2,7 +2,6 @@ package view;
 
 import domain.Menu;
 import domain.Restaurant;
-import domain.time.DefaultTimeSet;
 import domain.time.TimeRange;
 import domain.time.TimeSet;
 import domain.time.TimeTable;

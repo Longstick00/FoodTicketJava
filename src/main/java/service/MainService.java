@@ -5,8 +5,6 @@ import domain.Account;
 import domain.Menu;
 import domain.Restaurant;
 import domain.Role;
-import domain.time.DefaultTimeSet;
-import domain.time.TimeRange;
 import domain.time.TimeSet;
 import domain.time.TimeTable;
 import repository.RestaurantRepository;
@@ -43,23 +41,8 @@ public class MainService {
         AdminProcess adminProcess = inputManager.getAdminProcess();
 
         switch (adminProcess) {
-            case NEW_USER -> {
-                makeAccount();
-            }
-            case CHANGE_TIME_SET -> {
-                List<Restaurant> restaurants = RestaurantRepository.get();
-                Restaurant restaurant = restaurants.stream()
-                        .filter(r -> r.isAdmin(userAccount.getName()))
-                        .findFirst().get();
-
-                outputView.printTimeTable(restaurant.getTimeTable());
-                TimeSet timeSet = ExceptionHandler.handle(inputManager::getCorrectionTimeSet, restaurant.getTimeTable());
-                String timeType = ExceptionHandler.handle(inputManager::getSelectedTimeType);
-                LocalTime time = ExceptionHandler.handle(inputManager::getCorrectionTime);
-
-                restaurant.updateTimeTable(timeSet, timeType, time);
-                System.out.println("변경 완료");
-            }
+            case NEW_USER -> makeAccount();
+            case CHANGE_TIME_SET -> changeTimeSet(userAccount);
             case RESTART -> {
             }
             case EXIT -> {
@@ -69,12 +52,23 @@ public class MainService {
         runMainService();
     }
 
-    private void checkAuth(Account userAccount) {
+    private void changeTimeSet(Account userAccount) {
+        List<Restaurant> restaurants = RestaurantRepository.get();
+        Restaurant restaurant = restaurants.stream()
+                .filter(r -> r.isAdmin(userAccount.getName()))
+                .findFirst().get();
 
+        changeTime(restaurant);
     }
 
     private void changeTime(Restaurant restaurant) {
+        outputView.printTimeTable(restaurant.getTimeTable());
+        TimeSet timeSet = ExceptionHandler.handle(inputManager::getCorrectionTimeSet, restaurant.getTimeTable());
+        String timeType = ExceptionHandler.handle(inputManager::getSelectedTimeType);
+        LocalTime time = ExceptionHandler.handle(inputManager::getCorrectionTime);
 
+        restaurant.updateTimeTable(timeSet, timeType, time);
+        System.out.println("변경 완료");
     }
 
     private void makeAccount() {

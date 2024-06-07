@@ -1,6 +1,5 @@
 package domain;
 
-import domain.time.DefaultTimeSet;
 import domain.time.TimeRange;
 import domain.time.TimeSet;
 import domain.time.TimeTable;
@@ -44,7 +43,7 @@ public class Restaurant {
         TimeRange range = timeTable.getTimeRanges().stream()
                 .filter(r -> r.getTimeSet().equals(timeSet))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException(""));
         range.updateTime(timeType, time);
     }
 
