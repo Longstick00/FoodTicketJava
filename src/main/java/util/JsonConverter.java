@@ -10,8 +10,8 @@ import java.util.List;
 
 public class JsonConverter {
 
-//    private static final String PATH = "C:\\Users\\78945\\IdeaProjects\\foodTicket\\";
-    private static final String PATH = "C:\\Users\\laptop\\Desktop\\놀이방\\FoodTicketJava\\";
+    private static final String PATH = "C:\\Users\\78945\\IdeaProjects\\foodTicket\\";
+//    private static final String PATH = "C:\\Users\\laptop\\Desktop\\놀이방\\FoodTicketJava\\";
 
     public static <T> List<T> jsonToEntity(Class<T> clazz, String path) {
         ObjectMapper objectMapper = new ObjectMapper();
