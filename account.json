@@ -1,1 +1,37 @@
-[{"name":"jang","balance":100000,"role":"ADMIN"},{"name":"kim","balance":100000,"role":"ADMIN"},{"name":"lee","balance":100000,"role":"ADMIN"},{"name":"choi","balance":100000,"role":"GENERAL"},{"name":"oh","balance":100000,"role":"GENERAL"},{"name":"jang","balance":100000,"role":"GENERAL"},{"name":"park","balance":100000,"role":"GENERAL"}]
+[
+  {
+    "name":"jang",
+    "balance":100000,
+    "role":"ADMIN"
+  },
+  {
+    "name":"kim",
+    "balance":100000,
+    "role":"ADMIN"
+  },
+  {
+    "name":"lee",
+    "balance":100000,
+    "role":"ADMIN"
+  },
+  {
+    "name":"choi",
+    "balance":100000,
+    "role":"GENERAL"
+  },
+  {
+    "name":"oh",
+    "balance":100000,
+    "role":"GENERAL"
+  },
+  {
+    "name":"jang",
+    "balance":100000,
+    "role":"GENERAL"
+  },
+  {
+    "name":"park",
+    "balance":100000,
+    "role":"GENERAL"
+  }
+]
